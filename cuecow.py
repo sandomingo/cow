@@ -22,13 +22,14 @@ def convert(input_file, output_encoding):
     origin_fobj = open(input_file, 'rb')
     result = chardet.detect(origin_fobj.read())
     confidence = float(result['confidence'])
-    if confidence > 0.5:
+    guess_encoding = None
+    if confidence > 0.4:
         guess_encoding = result['encoding']
         read_then_write(input_file, guess_encoding, output_encoding)
-        print 'Convert from %s to %s Complete! (with a confidence of %d %%)' \
+        print 'Convert from %s to %s Completed! (with a confidence of %d%%)' \
               % (guess_encoding, output_encoding, int(confidence*100))
     else:
-        print 'Convert failed!'
+        print 'Convert failed! [Debug info] confidence->%s, guess_encoding->%s' % (confidence, guess_encoding)
 
 def print_usage():
     print 'python cuecow.py input_file [output_encoding(default: utf-8)]'
