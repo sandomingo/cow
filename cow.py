@@ -23,7 +23,7 @@ def convert(in_file, out_encoding):
     if confidence > 40.0:
         read_then_write(in_file, guess_encoding, out_encoding)
         print 'Convert from %s to %s Completed (with a confidence of %.2f%%)!' \
-              % (guess_encoding, out_encoding, int(confidence*100))
+              % (guess_encoding, out_encoding, confidence)
     else:
         print 'Convert failed! [Debug info] confidence->%s, guess_encoding->%s' % (confidence, guess_encoding)
 
