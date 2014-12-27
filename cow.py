@@ -40,8 +40,13 @@ def extract_info(info_file):
             line = codecs.decode(line, guess_encoding)
             if not has_title and (line.startswith(u"专辑名称：") or line.startswith(u"唱片名称：")):
                 title = line[5:]
-            elif line.startswith(u"歌手："):
+                has_title = True
+            elif not has_performer and line.startswith(u"歌手："):
                 performer = line[3:]
+                has_performer = True
+            elif not has_performer and line.startswith(u"歌手组合："):
+                performer = line[5:]
+                has_performer = True
             elif re.match("^\d\d .+", line):
                 pos = line.index(' ')
                 no = line[:pos]
