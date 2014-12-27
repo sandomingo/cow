@@ -48,7 +48,7 @@ def extract_info(info_file):
                 name = line[pos+1:]
                 songs.append((no, name))
         except Exception as e:
-            pass
+            print 'Exception: err while process line: ' + line
     reader.close()
     return title, performer, songs
 
