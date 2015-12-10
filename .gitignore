@@ -53,8 +53,17 @@ docs/_build/
 # PyBuilder
 target/
 
+<<<<<<< HEAD
 # other
 .DS_Store
 .idea/*
 album.cue
 album.info
+=======
+# IDEA
+.idea/
+
+# test data
+*.cue
+*.info
+>>>>>>> 96d572cd80855b3f8d099002bccbd4a76b93d4d0
