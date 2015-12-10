@@ -98,9 +98,12 @@ def read_file_as_string(in_file):
 
 def convert(in_file, out_encoding):
     confidence, guess_encoding = detect(in_file)
-    read_then_write(in_file, guess_encoding, out_encoding)
-    print 'Convert from %s to %s Completed (with a confidence of %.2f%%)!' \
+    if confidence > 40.0:
+        read_then_write(in_file, guess_encoding, out_encoding)
+        print 'Convert from %s to %s Completed (with a confidence of %.2f%%)!' \
               % (guess_encoding, out_encoding, confidence)
+    else:
+        print 'Convert failed! [Debug info] confidence->%s, guess_encoding->%s' % (confidence, guess_encoding)
 
 
 def detect(in_file):
@@ -112,8 +115,7 @@ def detect(in_file):
 
 
 def print_usage():
-    print 'Usage: '
-    print '       python cow.py [detect/convert] input_file [output_encoding(default: utf-8)] 检测/转换文件到指定编码'
+    print 'Usage: python cow.py [detect/convert] input_file [output_encoding(default: utf-8)] 检测/转换文件到指定编码'
     print '       python cow.py rebuild cue_file album_info_file 使用专辑信息补全cue文件信息'
 
 
